@@ -5,7 +5,7 @@ const fs = require('fs')
 module.exports = tmp
 
 async function tmp (t) {
-  const tmpdir = path.join(os.tmpdir(), 'tmp-test-' + Math.random().toString(16).slice(2))
+  const tmpdir = path.join(await fs.promises.realpath(os.tmpdir()), 'tmp-test-' + Math.random().toString(16).slice(2))
 
   try {
     await gc(tmpdir)
