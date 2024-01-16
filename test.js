@@ -29,7 +29,7 @@ test('invalid directory name', async function (t) {
 
 test('reuse directory', async function (t) {
   const name = 'existing-dir'
-  const existing = path.join(os.tmpdir(), 'tmp-test-' + name)
+  const existing = path.join(await fs.promises.realpath(os.tmpdir()), 'tmp-test-' + name)
 
   await fs.promises.mkdir(existing, { recursive: true })
 
