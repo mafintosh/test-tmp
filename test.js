@@ -12,7 +12,7 @@ test('basic', async function (t) {
 
 test('specified name', async function (t) {
   const name = 'testdir'
-  const dir = await tmp(t, name)
+  const dir = await tmp(t, { name })
   t.ok(dir.includes(name), 'directory contains specified name')
   t.alike(await fs.promises.readdir(dir), [])
 })
@@ -20,7 +20,7 @@ test('specified name', async function (t) {
 test('invalid directory name', async function (t) {
   const name = '<>:/\\|?*'
   try {
-    await tmp(t, name)
+    await tmp(t, { name })
     t.pass('should default to a random name when an invalid input is provided')
   } catch (error) {
     t.fail('expected to handle an invalid directory name')
@@ -33,6 +33,6 @@ test('reuse directory', async function (t) {
 
   await fs.promises.mkdir(existing, { recursive: true })
 
-  const dir = await tmp(t, name)
+  const dir = await tmp(t, { name })
   t.is(dir, existing, 'uses the existing directory when it already exists')
 })
