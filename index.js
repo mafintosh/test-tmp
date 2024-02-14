@@ -19,7 +19,7 @@ async function tmp (t, name = null) {
   return tmpdir
 
   async function gc () {
-    await fs.promises.rm(tmpdir, { recursive: true })
+    await fs.promises.rm(tmpdir, { recursive: true, force: true })
   }
 
   function valid (name) {
