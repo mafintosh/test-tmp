@@ -24,6 +24,11 @@
     "brittle": "^3.3.2",
     "standard": "^17.1.0"
   },
+  "optionalDependencies": {
+    "bare-fs": "^2.2.3",
+    "bare-os": "^2.2.1",
+    "bare-path": "^2.1.1"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/mafintosh/test-tmp.git"
