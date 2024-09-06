@@ -4,10 +4,14 @@ const fs = require('fs')
 
 module.exports = tmp
 
-async function tmp (t, { name = null, order = Infinity } = {}) {
+async function tmp (t, { dir = null, name = null, order = Infinity } = {}) {
   if (!valid(name)) name = Math.random().toString(16).slice(2)
 
-  const tmpdir = path.join(await fs.promises.realpath(os.tmpdir()), 'tmp-test-' + name)
+  if (dir) {
+    await fs.promises.mkdir(dir, { recursive: true })
+  }
+
+  const tmpdir = path.join(await fs.promises.realpath(dir || os.tmpdir()), 'tmp-test-' + name)
 
   try {
     await gc(tmpdir)

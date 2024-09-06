@@ -36,3 +36,12 @@ test('reuse directory', async function (t) {
   const dir = await tmp(t, { name })
   t.is(dir, existing, 'uses the existing directory when it already exists')
 })
+
+test('specify root directory', async function (t) {
+  const dir = await tmp(t, { dir: './tmp-storage' })
+
+  const children = await fs.promises.readdir('./tmp-storage')
+  t.is(children.length, 1)
+
+  t.alike(await fs.promises.readdir(dir), [])
+})
