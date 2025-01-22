@@ -4,7 +4,7 @@ const fs = require('fs')
 
 module.exports = tmp
 
-async function tmp (t, { dir = null, name = null, order = Infinity } = {}) {
+async function tmp (t, { dir = null, name = null, order = Infinity, force = true } = {}) {
   if (!valid(name)) name = Math.random().toString(16).slice(2)
 
   if (dir) {
@@ -19,7 +19,7 @@ async function tmp (t, { dir = null, name = null, order = Infinity } = {}) {
 
   await fs.promises.mkdir(tmpdir, { recursive: true })
 
-  if (t) t.teardown(gc, { order })
+  if (t) t.teardown(gc, { order, force })
   return tmpdir
 
   async function gc () {
