@@ -8,7 +8,7 @@ npm install test-tmp
 
 ## Usage
 
-``` js
+```js
 const test = require('brittle')
 const tmp = require('test-tmp')
 
